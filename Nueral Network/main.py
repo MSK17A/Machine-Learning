@@ -14,5 +14,4 @@ Theta1 = np.loadtxt('Theta1', usecols=range(401), delimiter=',')
 Theta2 = np.loadtxt('Theta2', usecols=range(26), delimiter=',')
 Theta = [Theta1,Theta2]
 
-
 print(nn.cost(X,y,Theta,1,10))

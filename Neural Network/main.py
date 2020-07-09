@@ -1,5 +1,5 @@
 import numpy as np
-import NeuralNets as nn
+from NeuralNets import NeuralNetworkModel
 
 #data = np.loadtxt('data', usecols=range(400), delimiter=',')
 #np.save('data',data)
@@ -14,4 +14,8 @@ y = np.mat(y).transpose() # convert into column vector
 #Theta2 = np.loadtxt('Nueral Network/Theta2', usecols=range(26), delimiter=',')
 Theta = [np.load('Neural Network/Theta1.npy'),np.load('Neural Network/Theta2.npy')]
 
-print(nn.cost(X,y,Theta,1,10))
+NN = NeuralNetworkModel(3,X,y) # Creating Neural Net Model
+
+print(NN.cost(X,y,Theta,1,10))
+
+#j

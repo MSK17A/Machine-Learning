@@ -34,4 +34,4 @@ def randomWeights(r,c):
 
     return Theta
 
-#def backPropagation(X,y,Theta,Lambda):
+#def backPropagation(X,y,Theta):

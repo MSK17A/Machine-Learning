@@ -17,5 +17,3 @@ Theta = [np.load('Neural Network/Theta1.npy'),np.load('Neural Network/Theta2.npy
 NN = NeuralNetworkModel(3,X,y) # Creating Neural Net Model
 
 print(NN.cost(X,y,Theta,1,10))
-
-#j

@@ -4,15 +4,15 @@ from NeuralNets import NeuralNetworkModel
 #data = np.loadtxt('data', usecols=range(400), delimiter=',')
 #np.save('data',data)
 
-X = np.load('Neural Network/data.npy') # loads input data matrix X
+X = np.load('data.npy') # loads input data matrix X
 X = np.mat(X) # Convert into numpy matrix
 
-y = np.load('Neural Network/labels.npy') # loads the corresponded labels for X
+y = np.load('labels.npy') # loads the corresponded labels for X
 y = np.mat(y).transpose() # convert into column vector
 
-#Theta1 = np.loadtxt('Nueral Network/Theta1', usecols=range(401), delimiter=',')
-#Theta2 = np.loadtxt('Nueral Network/Theta2', usecols=range(26), delimiter=',')
-Theta = [np.load('Neural Network/Theta1.npy'),np.load('Neural Network/Theta2.npy')]
+#Theta1 = np.loadtxt('Theta1', usecols=range(401), delimiter=',')
+#Theta2 = np.loadtxt('Theta2', usecols=range(26), delimiter=',')
+Theta = [np.load('Theta1.npy'),np.load('Theta2.npy')]
 
 NN = NeuralNetworkModel(3,X,y) # Creating Neural Net Model
 

@@ -16,4 +16,4 @@ Theta = [np.load('Theta1.npy'),np.load('Theta2.npy')]
 
 NN = NeuralNetworkModel(3,X,y,Theta,1,10) # Creating Neural Net Model
 
-print(NN.backPropagation())
+print(np.mat(NN.backPropagation()[0])[0,4])

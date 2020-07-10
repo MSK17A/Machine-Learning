@@ -12,8 +12,8 @@ class NeuralNetworkModel:
         self.Lambda = Lambda # Regularization factor
         self.X = np.append(np.ones((y.shape[0],1)),X,1)
         self.y = y
-        self.Ylabel = range(0,K) == y
-        #self.Ylabel = self.Ylabel[:,1:]
+        self.Ylabel = range(0,K) == y # Making y into a matrix holding vectors with one to the corresponded class 
+                                      #(for example) y[0] = [0,0,0,1,0] for label 3, y[1] = [0,0,1,0,0] for label 2
 
 
     def sigmoid(self,Z):
@@ -54,8 +54,11 @@ class NeuralNetworkModel:
         delta2 = a2.transpose()*err3
 
         Grad1 = 1/self.m*delta1
-        Grad2 = 1/self.m*delta2
+        #Grad1[:,1:] += self.Lambda/self.m * self.Theta[0][:,1:]
 
+        Grad2 = 1/self.m*delta2
+        #Grad2[:,1:] += self.Lambda/self.m * self.Theta[1][:,1:]
+        
         return [Grad1.transpose(),Grad2.transpose()]
 
     def gradDescent(self,alpha,iter):

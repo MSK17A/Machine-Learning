@@ -1,5 +1,6 @@
 import numpy as np
 from NeuralNets import NeuralNetworkModel
+import matplotlib.pyplot as plt
 
 #data = np.loadtxt('data', usecols=range(400), delimiter=',')
 #np.save('data',data)
@@ -12,8 +13,14 @@ y = np.mat(y).transpose() # convert into column vector
 
 #Theta1 = np.loadtxt('Theta1', usecols=range(401), delimiter=',')
 #Theta2 = np.loadtxt('Theta2', usecols=range(26), delimiter=',')
-Theta = [np.load('Input Data/Test Weights/Theta1.npy'),np.load('Input Data/Test Weights/Theta2.npy')]
+Theta = [np.load('Theta1Learned.npy'),np.load('Theta2Learned.npy')]
 
-NN = NeuralNetworkModel(3,X,y,Theta,1,10) # Creating Neural Net Model
+NN = NeuralNetworkModel(3,X,y,Theta,0,10) # Creating Neural Net Model
 
-print(NN.backPropagation())
+predict = NN.predict(X)
+
+for i in range(0,5000):
+
+    predict[i] = predict[i].argmax()
+    
+print(np.mean(predict == y)*100)

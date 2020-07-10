@@ -23,7 +23,7 @@ class NeuralNetworkModel:
         Z = np.mat(Z)
         return np.multiply(self.sigmoid(Z),(1-self.sigmoid(Z)))
 
-    def cost(self,X,y,Theta,Lambda,K):
+    def cost(self,X,y,Theta,Lambda):
 
         h = (self.feedForward(X,y,Theta))[2]
         RegularizationTerm = Lambda/(2*self.m) * (np.sum(np.sum(np.power(Theta[0],2))) + np.sum(np.sum(np.power(Theta[1],2))))
@@ -64,3 +64,6 @@ class NeuralNetworkModel:
         Grad2 = 1/self.m*delta2
 
         return [Grad1.transpose(),Grad2.transpose()]
+
+    def gradDescent(self,iter):
+        pass

@@ -34,9 +34,9 @@ class NeuralNetworkModel:
 
     def feedForward(self,X,Theta):
 
-        z2 = self.X*(Theta[0].transpose())
+        z2 = self.X@(Theta[0].transpose())
         a2 = self.sigmoid(z2)
-        a2 = np.append(np.ones((self.m,1)),a2,1)
+        a2 = np.append(np.ones((self.X.shape[0],1)),a2,1)
         z3 = a2*(Theta[1].transpose())
         a3 = self.sigmoid(z3)
 
@@ -70,5 +70,5 @@ class NeuralNetworkModel:
         return [self.Theta[0],self.Theta[1]]
 
     def predict(self,X):
-
+        self.X = np.append(np.ones((X.shape[0],1)),X,1)
         return self.feedForward(X,self.Theta)[2]

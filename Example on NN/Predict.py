@@ -16,16 +16,24 @@ Theta = [np.load('Theta1Learned.npy'),np.load('Theta2Learned.npy')]
 
 NN = NeuralNetworkModel(3,X,y,Theta,0,2) # Creating Neural Net Model
 
-#xgrid = np.linespace(-1,1.5,50)
-#ygrid = np.linespace(-1,1.5,50)
+xgrid = np.linspace(-2,2,100)
+ygrid = np.linspace(-2,2,100)
 
-#for i in range(0,xgrid.shape[0]):
-   # for j in range(0,ygrid[0]):
-       # H[i,j] =  
-predict = NN.predict(X)
+Grid = np.c_[xgrid,ygrid]
+Z = np.zeros([100,100])
 
-for i in range(0,118):
 
-    predict[i] = predict[i].argmax()
+for i in range(0,xgrid.shape[0]):
+    for j in range(0,ygrid.shape[0]):
+        X = np.mat([xgrid[i],ygrid[j]])
+        Z[i,j] = NN.predict(X).argmax()
+
+
+plt.contour(Grid[:,0],Grid[:,1],Z.transpose()); plt.show()
+
+
+#for i in range(0,50):
+
+#    predict[i] = predict[i].argmax()
     
-print(np.mean(predict == y)*100)
+#print(np.mean(predict == y)*100)

@@ -24,9 +24,9 @@ class NeuralNetworkModel:
         Z = np.mat(Z)
         return np.multiply(self.sigmoid(Z),(1-self.sigmoid(Z)))
 
-    def cost(self,X,Theta,Lambda):
+    def cost(self,Theta,Lambda):
 
-        h = (self.feedForward(X,Theta))[2]
+        h = (self.feedForward(self.X,Theta))[2]
         RegularizationTerm = Lambda/(2*self.m) * (np.sum(np.sum(np.power(Theta[0],2))) + np.sum(np.sum(np.power(Theta[1],2))))
         J = 1/self.m * np.sum( np.sum( np.multiply( -1*self.Ylabel,np.log(h) ) - np.multiply( (1-self.Ylabel),np.log(1-h) ) ) ) + RegularizationTerm
 
@@ -34,9 +34,9 @@ class NeuralNetworkModel:
 
     def feedForward(self,X,Theta):
 
-        z2 = self.X@(Theta[0].transpose())
+        z2 = X*(Theta[0].transpose())
         a2 = self.sigmoid(z2)
-        a2 = np.append(np.ones((self.X.shape[0],1)),a2,1)
+        a2 = np.append(np.ones((X.shape[0],1)),a2,1)
         z3 = a2*(Theta[1].transpose())
         a3 = self.sigmoid(z3)
 
@@ -65,10 +65,10 @@ class NeuralNetworkModel:
             self.Theta[0] = self.Theta[0] - alpha*self.backPropagation()[0]
             self.Theta[1] = self.Theta[1] - alpha*self.backPropagation()[1]
 
-            self.Jhistory = np.append(self.Jhistory,self.cost(self.X,self.Theta,self.Lambda))
+            self.Jhistory = np.append(self.Jhistory,self.cost(self.Theta,self.Lambda))
             print(self.Jhistory[i])
         return [self.Theta[0],self.Theta[1]]
 
     def predict(self,X):
-        self.X = np.append(np.ones((X.shape[0],1)),X,1)
+        X = np.append(np.ones((X.shape[0],1)),X,1)
         return self.feedForward(X,self.Theta)[2]

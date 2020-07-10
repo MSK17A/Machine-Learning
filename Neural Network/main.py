@@ -14,6 +14,6 @@ y = np.mat(y).transpose() # convert into column vector
 #Theta2 = np.loadtxt('Theta2', usecols=range(26), delimiter=',')
 Theta = [np.load('Theta1.npy'),np.load('Theta2.npy')]
 
-NN = NeuralNetworkModel(3,X,y) # Creating Neural Net Model
+NN = NeuralNetworkModel(3,X,y,Theta,1,10) # Creating Neural Net Model
 
-print(NN.cost(X,y,Theta,1,10))
+print(NN.backPropagation())

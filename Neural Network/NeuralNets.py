@@ -1,7 +1,7 @@
 import numpy as np
 
 class NeuralNetworkModel:
-    Ylabel = 0
+
     def __init__(self,a,X,y,Theta,Lambda,K):
         self.m = y.shape[0] # Number of examples
         self.n = X.shape[1] # Number of features

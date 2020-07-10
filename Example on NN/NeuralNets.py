@@ -34,10 +34,10 @@ class NeuralNetworkModel:
 
     def feedForward(self,X,Theta):
 
-        z2 = self.X@(Theta[0].transpose())
+        z2 = self.X*(Theta[0].transpose())
         a2 = self.sigmoid(z2)
         a2 = np.append(np.ones((self.m,1)),a2,1)
-        z3 = a2@(Theta[1].transpose())
+        z3 = a2*(Theta[1].transpose())
         a3 = self.sigmoid(z3)
 
         return [z2,a2,a3]

@@ -1,0 +1,2 @@
+model_checkpoint_path: "EmoNet"
+all_model_checkpoint_paths: "EmoNet"
